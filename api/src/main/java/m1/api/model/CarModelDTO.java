@@ -13,7 +13,7 @@ public class CarModelDTO {
     
     private int MakeId;
 
-    private double modelPrice;
+    private double carPrice;
 
     private boolean activeStatus;
 }

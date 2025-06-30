@@ -5,16 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import m1.api.request.LoanCalculationRequest;
 import m1.api.response.CarModelDetailResponse;
 import m1.api.response.ListCarMakeResponse;
 import m1.api.response.ListCarModelResponse;
+import m1.api.response.LoanCalculationResponse;
+import m1.api.service.LoanCalculationService;
 import m1.api.service.MakeService;
 import m1.api.service.ModelService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -28,6 +33,9 @@ public class WebServiceController {
 
     @Autowired
     ModelService modelService;
+
+    @Autowired
+    LoanCalculationService loanCalculationService;
 
     @GetMapping("/makes")
     public ResponseEntity<ListCarMakeResponse> listMake() {
@@ -59,6 +67,17 @@ public class WebServiceController {
             var price = modelService.getModelDetailById(modelId);
 
             return ResponseEntity.ok(price);
+        } catch(Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    
+    @PostMapping("/loan/calculate")
+    public ResponseEntity<LoanCalculationResponse> loanCalculation(@RequestBody LoanCalculationRequest request) {
+        try {
+            var calculate = loanCalculationService.loanCalculation(request);
+
+            return ResponseEntity.ok(calculate);
         } catch(Exception e) {
             return ResponseEntity.internalServerError().build();
         }

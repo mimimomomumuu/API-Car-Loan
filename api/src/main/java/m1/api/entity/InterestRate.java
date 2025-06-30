@@ -11,34 +11,26 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "MST_CAR_MODEL")
+@Table (name = "MST_INTEREST_RATE")
 @Data
-public class CarModel {
+public class InterestRate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CAR_MODEL_ID")
-    private int modelId;
+    @Column(name = "INTEREST_RATE_ID")
+    private int rateId;
 
-    @Column(name = "CAR_MODEL_NAME")
-    private String modelName;
+    @Column(name = "INTEREST_RATE_CAR_YEAR_FROM")
+    private int yearFrom;
 
-    @Column(name = "CAR_MODEL_YEAR")
-    private int modelYear;
-    
-    @Column(name = "CAR_MAKE_ID")
-    private int makeId;
+    @Column(name = "INTEREST_RATE_CAR_YEAR_TO")
+    private int yearTo;
 
-    @Column(name = "CAR_PRICE")
-    private double carPrice;
+    @Column(name = "INSTALLMENT_MONTHS")
+    private int installmentMonths;
 
-    @Column(name = "CAR_MODEL_IMG_PATH")
-    private String modelImg;
-
-    @Column(name = "CAR_MODEL_VIDEO_PATH")
-    private String modelVdo;
-
-    @Column(name = "ACTIVE_STATUS")
-    private boolean activeStatus;
+    @Column(name = "INTEREST_RATE")
+    private double rate;
 
     @Column(name = "CREATED_DATE")
     private Date createdDate;
@@ -51,4 +43,5 @@ public class CarModel {
 
     @Column(name = "UPDATED_BY")
     private String updatedBy;
+    
 }
